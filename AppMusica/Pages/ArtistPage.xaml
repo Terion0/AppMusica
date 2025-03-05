@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:AppMusica.PagesModels"
+             xmlns:media="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+             x:Class="AppMusica.Pages.ArtistPage"
+            >
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Grid HeightRequest="400">
+                <Image Source="{Binding SelectedArtist.ArtistBackground}" Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="400" />
+                <Label Text="{Binding SelectedArtist.Name}" FontSize="90" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" Margin="20" />
+            </Grid>
+            <Label Text="Albumes" FontSize="50" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
+            <CollectionView 
+                
+                 ItemsSource="{Binding SelectedArtist.Albums}"                     
+                 SelectedItem="{Binding SelectedAlbum}"
+                 SelectionChangedCommand="{Binding ToAlbumCommand}"
+                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference albumes}}"  
+                 SelectionMode="Single" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Image Source="{Binding Picture}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                            <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" />
+                            <Label Text="{Binding Year}" FontSize="16" TextColor="Gray" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
+
+
+
+
+
