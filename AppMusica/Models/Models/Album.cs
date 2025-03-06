@@ -9,13 +9,13 @@ namespace AppMusica.Models.Models
 {
     public class Album
     {
-        [JsonPropertyName("title")]
+      
         public string Title { get; set; }
-        [JsonPropertyName("year")]
+      
         public int? Year { get; set; }
-        [JsonPropertyName("picture")]
+       
         public string? Picture { get; set; }
-        [JsonPropertyName("artist_id")]
+      
         public int? ArtistId { get; set; }
     }
 }

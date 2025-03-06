@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:AppMusica.PagesModels"
+             xmlns:p="clr-namespace:AppMusica.Properties"
              xmlns:media="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
              x:Class="AppMusica.Pages.ArtistPage"
             >
@@ -12,7 +13,7 @@
                 <Image Source="{Binding SelectedArtist.ArtistBackground}" Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="400" />
                 <Label Text="{Binding SelectedArtist.Name}" FontSize="90" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" Margin="20" />
             </Grid>
-            <Label Text="Albumes" FontSize="50" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
+            <Label Text="{x:Static p:Resources.Album}" FontSize="50" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
             <CollectionView 
                 
                  ItemsSource="{Binding SelectedArtist.Albums}"                     

@@ -41,7 +41,7 @@ namespace AppMusica.Services
         public async Task<SongReadExtended> ReadAsync(int id)
         {
             SongReadExtended fromApi = new();
-            Uri uri = new Uri(string.Format($"http://localhost:8079/songs/{id}", string.Empty));
+            Uri uri = new Uri(string.Format($"http://localhost:8079/{id}", string.Empty));
             HttpResponseMessage response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {

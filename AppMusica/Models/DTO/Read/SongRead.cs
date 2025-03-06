@@ -10,9 +10,9 @@ namespace AppMusica.Models.DTO.Read
 {
     public class SongRead : Song
     {
-        [JsonPropertyName("file")]
+      
         public string File { get; set; }
-        [JsonPropertyName("id")]
+      
         public int Id { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 namespace AppMusica.PagesModels
 {
    public partial class MainPageModel : ObservableObject
@@ -22,11 +23,16 @@ namespace AppMusica.PagesModels
         [ObservableProperty]
         private SongRead _selectedSong;
 
+       
+
+
         [ObservableProperty]
         public ObservableCollection<ArtistRead> _ListaArtistas = new();
 
         [ObservableProperty]
         private ArtistRead _selectedArtist;
+
+      
 
         [ObservableProperty]
         public ObservableCollection<AlbumRead> _ListaAlbumes = new();
@@ -34,19 +40,45 @@ namespace AppMusica.PagesModels
         [ObservableProperty]
         private AlbumRead _selectedAlbum;
 
+       
+
         [ObservableProperty]
         public ObservableCollection<GenreRead> _ListaGeneros = new();
+
+        
+
+
+        private string searchQuery;
+        public string SearchQuery
+        {
+            get => searchQuery;
+            set
+            {
+                if (searchQuery != value)
+                {
+                    searchQuery = value;
+                    OnPropertyChanged();
+                    Filtrar();
+                   
+                }
+            }
+        }
+
+
+
 
         public MainPageModel(ServSong servS,ServArtist servA, ServAlbum servAl, ServGenre servG) {
                 SongServices = servS;
                 ArtistServices = servA;
                 AlbumServices = servAl;
                 GenreServices = servG;
-                Sinchronice();
-            }
            
-              
-                    
+            Sinchronice();
+        
+
+        }
+
+
 
         private async void Sinchronice() {
             var aDevolverSongs = await SongServices.ReadAllAsync();
@@ -60,9 +92,42 @@ namespace AppMusica.PagesModels
 
             var aDevolverGenres = await GenreServices.ReadAllAsync();
             ListaGeneros = new ObservableCollection<GenreRead>(aDevolverGenres);
+
+            
         }
 
-       [RelayCommand]
+        private void Filtrar()
+        {
+            if (string.IsNullOrEmpty(SearchQuery))
+            {
+                Sinchronice(); 
+            }
+            else
+            {
+                string lowerQuery = SearchQuery.ToLower();       
+                ListaCanciones = new ObservableCollection<SongRead>(
+                    ListaCanciones.Where(c => c.Title.ToLower().Contains(lowerQuery)));
+              
+        
+                ListaArtistas = new ObservableCollection<ArtistRead>(
+                    ListaArtistas.Where(a => a.Name.ToLower().Contains(lowerQuery)));
+
+          
+                ListaAlbumes = new ObservableCollection<AlbumRead>(
+                    ListaAlbumes.Where(a => a.Title.ToLower().Contains(lowerQuery)));
+
+            
+                ListaGeneros = new ObservableCollection<GenreRead>(
+                    ListaGeneros.Where(g => g.Name.ToLower().Contains(lowerQuery)));
+
+               
+            }
+           
+        }
+
+      
+
+        [RelayCommand]
        private async Task ToSongAsync() 
         { 
            await Shell.Current.GoToAsync($"detailsong?id={SelectedSong.Id}");

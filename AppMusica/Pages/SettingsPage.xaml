@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AppMusica.Pages.SettingsPage"
+             xmlns:p="clr-namespace:AppMusica.Properties"
+             >
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="Modo Oscuro" 
+           Grid.Column="0" 
+           Grid.Row="0" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Start" />
+
+           
+            <Switch IsToggled="{Binding IsDarkMode}" 
+            Grid.Column="1" 
+            Grid.Row="0" />
+
+           
+            <Label Text="Cambio de idioma no implementado" 
+           Grid.Column="0" 
+           Grid.Row="1" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Start" />
+
+         
+            <Picker ItemsSource="{Binding Idiomas}" 
+            Grid.Column="1" 
+            Grid.Row="1" 
+            SelectedItem="{Binding SelectedLeng, Mode=TwoWay}" />
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -9,7 +9,6 @@ namespace AppMusica.Models.Models
 {
     public class Genre
     {
-        [JsonPropertyName("name")]
         public string Name { get; set; }
     }
 }

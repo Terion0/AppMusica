@@ -4,16 +4,29 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AppMusica.Pages"
+    xmlns:p="clr-namespace:AppMusica.Properties"
     Shell.FlyoutBehavior="Flyout"
     Title="AppMusica">
+
+   
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    <ShellContent Title="About"
-        ContentTemplate="{DataTemplate local:AboutPage}"
-        Route="about" />
    
 
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="{x:Static p:Resources.Help}"
+           >
+            <ShellContent Title="{x:Static p:Resources.Settings}"
+                       
+                          ContentTemplate="{DataTemplate local:SettingsPage}" />
+            <ShellContent Title="{x:Static p:Resources.About}"
+                        
+                          ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+       
+    </FlyoutItem>
 </Shell>

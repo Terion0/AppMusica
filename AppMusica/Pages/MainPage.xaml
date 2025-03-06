@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:p="clr-namespace:AppMusica.Properties"
              xmlns:vm="clr-namespace:AppMusica.PagesModels"
              x:Class="AppMusica.Pages.MainPage">
+    
 
     <ScrollView>
-        <StackLayout Padding="20">
+      
 
-
-            <Label Text="Álbumes" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" />
+        <StackLayout Padding="5">
+            <SearchBar  MinimumWidthRequest="120" MaximumWidthRequest="500"  
+             Placeholder="Buscar..."  HorizontalTextAlignment="Start"  
+             Text="{Binding SearchQuery}" />
+            <Label Text="{x:Static p:Resources.Album}" FontSize="24" FontAttributes="Bold"  HorizontalOptions="Start" />
             <CollectionView
               x:Name="albums"
               HorizontalOptions="Start"
@@ -26,14 +31,14 @@
                         <Border StrokeShape="RoundRectangle 20" Padding="10" Margin="10" BackgroundColor="Transparent">
                             <StackLayout VerticalOptions="Center" WidthRequest="220" HeightRequest="280">
                                 <Image Source="{Binding Picture}" Aspect="AspectFill" HeightRequest="200" WidthRequest="200" />
-                                <Label Text="{Binding Title}" FontSize="16" TextColor="White" HorizontalOptions="Center" LineBreakMode="WordWrap" />
+                                <Label Text="{Binding Title}" FontSize="16"  HorizontalOptions="Center" LineBreakMode="WordWrap" />
                             </StackLayout>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-            <Label Text="Artistas" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" />
+
+            <Label Text="{x:Static p:Resources.Artist}" FontSize="24" FontAttributes="Bold"  HorizontalOptions="Start"  />
             <CollectionView
               x:Name="artists"
               HorizontalOptions="Start"
@@ -49,16 +54,16 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout VerticalOptions="Center" WidthRequest="160" HeightRequest="240">
-                            <Border StrokeShape="RoundRectangle 75" HeightRequest="150" WidthRequest="150" Padding="0" Stroke="White"  HorizontalOptions="Center" BackgroundColor="Transparent" >
-                                <Image Source="{Binding ArtistThumbnail}" Aspect="AspectFill" HeightRequest="150" WidthRequest="150" />
+                            <Border StrokeShape="RoundRectangle 75" HeightRequest="152" WidthRequest="152" Padding="0"   HorizontalOptions="Center" BackgroundColor="Transparent" >
+                                <Image Source="{Binding ArtistThumbnail}" Aspect="AspectFill"  />
                             </Border>
-                            <Label Text="{Binding Name}" FontSize="16" TextColor="White" HorizontalOptions="Start" VerticalOptions="Start" LineBreakMode="TailTruncation" Margin="0,5,0,0" />
+                            <Label Text="{Binding Name}" FontSize="16"  HorizontalOptions="Start" VerticalOptions="Start" LineBreakMode="TailTruncation" Margin="0,5,0,0" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="Géneros" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" />
+            <Label Text="{x:Static p:Resources.Genres}" FontSize="24" FontAttributes="Bold"  HorizontalOptions="Start"/>
             <CollectionView
           x:Name="genres"
           HorizontalOptions="Start"
@@ -70,9 +75,9 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border StrokeShape="RoundRectangle 20" Padding="10" Margin="0" BackgroundColor="Transparent" Stroke="White" StrokeThickness="2">
+                        <Border StrokeShape="RoundRectangle 20" Padding="10" Margin="0" BackgroundColor="Transparent"  StrokeThickness="2">
                             <StackLayout VerticalOptions="Center" WidthRequest="150" HeightRequest="100">
-                                <Label Text="{Binding Name}" FontSize="24" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" FontSize="24"  HorizontalOptions="Center" VerticalOptions="Center">
                                     <Label.Rotation>
                                         320
                                     </Label.Rotation>

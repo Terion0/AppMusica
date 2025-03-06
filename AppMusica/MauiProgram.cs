@@ -2,6 +2,7 @@
 using AppMusica.Pages;
 using AppMusica.PagesModels;
 using AppMusica.Services;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -14,7 +15,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseMauiCommunityToolkitMediaElement()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -23,15 +25,11 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-        JsonSerializerOptions serializer = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
-        };
+        
         builder.Services.AddSingleton<HttpClient>(); // Singleton porque  debe ser reutilizado
         builder.Services.AddSingleton(new JsonSerializerOptions
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             WriteIndented = true
         }); 
         builder.Services.AddTransient<ServSong>(); // Transient porque no mantiene estado
@@ -48,6 +46,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ArtistPage>();
         builder.Services.AddTransient<AboutPageModel>();
         builder.Services.AddTransient<AboutPage>();
+        builder.Services.AddTransient<SettingsPageModel>();
+        builder.Services.AddTransient<SettingsPage>();
 
 
         return builder.Build();

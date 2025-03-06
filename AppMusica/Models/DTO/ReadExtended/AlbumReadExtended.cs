@@ -11,9 +11,9 @@ namespace AppMusica.Models.DTO.ReadExtended
 {
     public class AlbumReadExtended : AlbumRead
     {
-        [JsonPropertyName("artist")]
+     
         public ArtistRead? Artist { get; set; }
-        [JsonPropertyName("songs")]
+     
         public SongRead[] Songs { get; set; } 
     }
 }

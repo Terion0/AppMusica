@@ -10,7 +10,7 @@ namespace AppMusica.Models.DTO.Read
 {
     public class PlaylistRead : Playlist
     {
-        [JsonPropertyName("id")]
+  
         public int Id { get; set; }
     }
 }

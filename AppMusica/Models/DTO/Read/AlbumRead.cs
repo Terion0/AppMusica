@@ -11,11 +11,10 @@ namespace AppMusica.Models.DTO.Read
     public class AlbumRead : Album
     {
 
-        [JsonPropertyName("mbid")]
+
         public int? Mbid { get; set; }
 
 
-        [JsonPropertyName("id")]
         public int Id { get; set; }
     }
 }

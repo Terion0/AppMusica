@@ -39,6 +39,7 @@ namespace AppMusica.Services
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
+               
 
                 fromApi =  JsonSerializer.Deserialize<List<AlbumRead>>(content,serializer);
               
@@ -54,7 +55,7 @@ namespace AppMusica.Services
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                fromApi = fromApi = JsonSerializer.Deserialize<AlbumReadExtended>(content, serializer);
+                fromApi  = JsonSerializer.Deserialize<AlbumReadExtended>(content, serializer);
 
             }
             return fromApi;
