@@ -33,9 +33,8 @@ namespace AppMusica.Services
         public async  Task<List<AlbumRead>> ReadAllAsync()
         {
             List<AlbumRead> fromApi = new();
-            Uri uri = new Uri(string.Format("http://localhost:8079/albums", string.Empty));
 
-            HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync("/albums");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -50,8 +49,8 @@ namespace AppMusica.Services
         public async Task<AlbumReadExtended> ReadAsync(int id)
         { 
             AlbumReadExtended fromApi = new();
-            Uri uri = new Uri(string.Format($"http://localhost:8079/albums/{id}", string.Empty));
-            HttpResponseMessage response = await client.GetAsync(uri);
+         
+            HttpResponseMessage response = await client.GetAsync($"/albums/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();

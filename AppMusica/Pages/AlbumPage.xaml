@@ -57,7 +57,14 @@
             </Grid>
 
             <BoxView HeightRequest="1" BackgroundColor="Gray" Margin="0,10,0,10" />
-            <CollectionView ItemsSource="{Binding SelectedAlbum.Songs}">
+            <CollectionView 
+                x:Name="albumsongs"
+                ItemsSource="{Binding ListaCanciones}"
+                 SelectedItem="{Binding SelectedSong}"
+                 SelectionChangedCommand="{Binding ReproduceSongCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference albumsongs}}"
+                SelectionMode="Single">
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">

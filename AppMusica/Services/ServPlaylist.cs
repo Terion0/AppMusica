@@ -21,17 +21,13 @@ namespace AppMusica.Services
             client = _client;
             serializer = _serializer;
         }
-        public void DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public async Task<List<PlaylistRead>> ReadAllAsync()
         {
             List<PlaylistRead> fromApi = new();
-            Uri uri = new Uri(string.Format("http://localhost:8079/playlists", string.Empty));
 
-            HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync("/playlists");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -43,8 +39,7 @@ namespace AppMusica.Services
         public async Task<PlayListReadExtended> ReadAsync(int id)
         {
             PlayListReadExtended fromApi = new();
-            Uri uri = new Uri(string.Format($"http://localhost:8079/playlists/{id}", string.Empty));
-            HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync($"/playlists/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -57,6 +52,27 @@ namespace AppMusica.Services
         public void UpdateAsync(Playlist objeto)
         {
             throw new NotImplementedException();
+        }
+
+        public void DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task CreateAsync(Playlist objeto) {
+
+            try
+            {
+                string jsonContent = JsonSerializer.Serialize(objeto, serializer);
+                StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync("/playlists", content);
+
+            
+            }
+            catch (Exception ex)
+            {
+          
+            }
         }
 
     }

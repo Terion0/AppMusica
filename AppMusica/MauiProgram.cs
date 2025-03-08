@@ -26,7 +26,11 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
         
-        builder.Services.AddSingleton<HttpClient>(); // Singleton porque  debe ser reutilizado
+        builder.Services.AddSingleton( new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:8079")
+
+        }); // Singleton porque  debe ser reutilizado
         builder.Services.AddSingleton(new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
@@ -35,17 +39,18 @@ public static class MauiProgram
         builder.Services.AddTransient<ServSong>(); // Transient porque no mantiene estado
         builder.Services.AddTransient<ServArtist>(); 
         builder.Services.AddTransient<ServAlbum>(); 
-        builder.Services.AddTransient<ServGenre>(); 
+        builder.Services.AddTransient<ServGenre>();
+        builder.Services.AddTransient<ServPlaylist>();
         builder.Services.AddTransient<MainPageModel>(); 
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<AlbumPageModel>(); 
         builder.Services.AddTransient<AlbumPage>(); 
-        builder.Services.AddTransient<SongsPageModel>(); 
-        builder.Services.AddTransient<SongsPage>();
         builder.Services.AddTransient<ArtistPageModel>();
         builder.Services.AddTransient<ArtistPage>();
         builder.Services.AddTransient<AboutPageModel>();
         builder.Services.AddTransient<AboutPage>();
+        builder.Services.AddTransient<PlaylistPageModel>();
+        builder.Services.AddTransient<PlaylistPage>();
         builder.Services.AddTransient<SettingsPageModel>();
         builder.Services.AddTransient<SettingsPage>();
 

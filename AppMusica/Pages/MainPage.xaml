@@ -64,6 +64,8 @@
             </CollectionView>
 
             <Label Text="{x:Static p:Resources.Genres}" FontSize="24" FontAttributes="Bold"  HorizontalOptions="Start"/>
+            <Label Text="No está implementada la navegación :)"/>
+
             <CollectionView
           x:Name="genres"
           HorizontalOptions="Start"

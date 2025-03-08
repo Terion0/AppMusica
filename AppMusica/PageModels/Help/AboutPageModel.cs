@@ -14,8 +14,8 @@ namespace AppMusica.PageModels
         [RelayCommand]
         private async Task ToVideo()
         {
-            var url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Cambia este enlace con el enlace correcto del video
-                                                                     // Esto lo ha hecho chat, el poder de la IA
+            var url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";   // Rickrolleado ;)
+
             await Launcher.OpenAsync(url);
         }
 

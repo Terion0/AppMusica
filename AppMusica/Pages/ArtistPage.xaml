@@ -15,7 +15,7 @@
             </Grid>
             <Label Text="{x:Static p:Resources.Album}" FontSize="50" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
             <CollectionView 
-                
+                 x:Name="albumes" 
                  ItemsSource="{Binding SelectedArtist.Albums}"                     
                  SelectedItem="{Binding SelectedAlbum}"
                  SelectionChangedCommand="{Binding ToAlbumCommand}"

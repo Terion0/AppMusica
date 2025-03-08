@@ -23,8 +23,6 @@ namespace AppMusica.PagesModels
         [ObservableProperty]
         private SongRead _selectedSong;
 
-       
-
 
         [ObservableProperty]
         public ObservableCollection<ArtistRead> _ListaArtistas = new();
@@ -32,8 +30,7 @@ namespace AppMusica.PagesModels
         [ObservableProperty]
         private ArtistRead _selectedArtist;
 
-      
-
+     
         [ObservableProperty]
         public ObservableCollection<AlbumRead> _ListaAlbumes = new();
 
@@ -126,13 +123,6 @@ namespace AppMusica.PagesModels
         }
 
       
-
-        [RelayCommand]
-       private async Task ToSongAsync() 
-        { 
-           await Shell.Current.GoToAsync($"detailsong?id={SelectedSong.Id}");
-        }
-
         [RelayCommand]
         private async Task ToArtistAsync()
         {
