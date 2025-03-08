@@ -171,6 +171,14 @@ namespace AppMusica.PageModels
             }
         }
 
+        [RelayCommand]
+        private async Task EliminarPlaylist() {
+        }
+        [RelayCommand]
+        private async Task UpdatearPlaylist()
+        {
+        }
+
 
 
         [RelayCommand]
