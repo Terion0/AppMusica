@@ -147,15 +147,27 @@ namespace AppMusica.PageModels
         }
 
         [RelayCommand]
-        private void SacarCancion()
+        private async Task SacarCancion()
         {
             if (AEscucharOCambiar != null)
             {
-               
-                ListaCanPlaylist.Add(SelectedSong);
-                //El patch de la playlist es raro de cojones.  
-                //await PlaylistServices.UpdateAsync(aEscucharOCambiar)
-
+                int idSong = SelectedSong.Id;
+                int idPlaylist = aEscucharOCambiar.Id;
+                await SongServices.UpdateAsync(idSong, idPlaylist);
+                var songs = await SongServices.ReadAllAsync();
+                List<SongRead> tmp = new();
+          
+                foreach (SongRead canciones in songs) {
+                    SongReadExtended songDetail = await SongServices.ReadAsync(canciones.Id);
+                    if (songDetail.Playlists == null) { songDetail.Playlists = new PlaylistRead[1];}
+                    foreach (PlaylistRead pl in songDetail.Playlists) {
+                        if (pl.Id == idPlaylist) {
+                            tmp.Add(canciones);
+                         
+                        }
+                    } 
+                }
+                ListaCanPlaylist = new ObservableCollection<SongRead>(tmp);
             }
         }
 
@@ -167,7 +179,7 @@ namespace AppMusica.PageModels
             var devueltas = await PlaylistServices.ReadAllAsync();
             int cantPlaylist = devueltas.Count();
             Playlist nueva = new();
-            nueva.Title = $"Playlist Nº{cantPlaylist}";
+            nueva.Title = $"Playlists Nº{cantPlaylist}";
             nueva.Description = $"Esta es tu playlist numero {cantPlaylist}";
             await PlaylistServices.CreateAsync(nueva);
 

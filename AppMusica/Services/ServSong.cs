@@ -40,7 +40,7 @@ namespace AppMusica.Services
         public async Task<SongReadExtended> ReadAsync(int id)
         {
             SongReadExtended fromApi = new();
-            HttpResponseMessage response = await client.GetAsync($"/songs7{id}");
+            HttpResponseMessage response = await client.GetAsync($"/songs/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -50,6 +50,13 @@ namespace AppMusica.Services
 
             return fromApi;
         }
+
+        public async Task UpdateAsync(int idSong, int idPlaylist)
+        {
+            SongReadExtended fromApi = new();
+            HttpResponseMessage response = await client.PatchAsync($"/songs/{idSong}/playlists/{idPlaylist}",null);
+        }
+          
 
 
     }

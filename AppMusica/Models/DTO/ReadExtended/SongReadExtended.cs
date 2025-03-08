@@ -13,6 +13,6 @@ namespace AppMusica.Models.DTO.ReadExtended
     {
         public AlbumReadExtended Album { get; set; }
         public GenreRead Genre { get; set; }
-        public PlaylistRead [] Playlist { get; set; }
+        public PlaylistRead [] Playlists { get; set; }
     }
 }

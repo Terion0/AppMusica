@@ -119,7 +119,7 @@ namespace AppMusica.Properties {
         /// </summary>
         internal static string Playlist {
             get {
-                return ResourceManager.GetString("Playlist", resourceCulture);
+                return ResourceManager.GetString("Playlists", resourceCulture);
             }
         }
         
