@@ -7,8 +7,6 @@
     xmlns:p="clr-namespace:AppMusica.Properties"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
-    MaximumHeightRequest="800"
-    MinimumHeightRequest="300"
     Title="AppMusica" FlyoutWidth="325">
 
     <ShellContent

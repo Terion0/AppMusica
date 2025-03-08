@@ -31,6 +31,8 @@ namespace AppMusica.PageModels
         [ObservableProperty]
         public SongRead _selectedSong;
 
+
+
         [ObservableProperty]
         public SongRead _aReproducir;
 
@@ -92,7 +94,7 @@ namespace AppMusica.PageModels
         {
             var aDevolverSongs = await SongServices.ReadAllAsync();
             ListaCanciones = new ObservableCollection<SongRead>(aDevolverSongs);
-
+          
 
             var aDevolverPlaylists = await PlaylistServices.ReadAllAsync();
             ListaPlaylits = new ObservableCollection<PlaylistRead>(aDevolverPlaylists);
@@ -104,6 +106,7 @@ namespace AppMusica.PageModels
             {
                 var aDevolverSongs = await SongServices.ReadAllAsync();
                 ListaCanciones = new ObservableCollection<SongRead>(aDevolverSongs);
+              
             }
             else
             {
@@ -146,13 +149,14 @@ namespace AppMusica.PageModels
         [RelayCommand]
         private void SacarCancion()
         {
-            if(AEscucharOCambiar!=null)
-            AEscucharOCambiar.Songs.Append(SelectedSong);
-            ListaCanPlaylist = new ObservableCollection<SongRead>(AEscucharOCambiar.Songs);
-            //El patch de la playlist es raro de cojones.  
-            //await PlaylistServices.UpdateAsync(aEscucharOCambiar)
+            if (AEscucharOCambiar != null)
+            {
+               
+                ListaCanPlaylist.Add(SelectedSong);
+                //El patch de la playlist es raro de cojones.  
+                //await PlaylistServices.UpdateAsync(aEscucharOCambiar)
 
-
+            }
         }
 
 
@@ -160,7 +164,8 @@ namespace AppMusica.PageModels
         [RelayCommand]
         private async Task GenerarPlaylistAsync() 
         {
-            int cantPlaylist = ListaPlaylits.Count;
+            var devueltas = await PlaylistServices.ReadAllAsync();
+            int cantPlaylist = devueltas.Count();
             Playlist nueva = new();
             nueva.Title = $"Playlist Nº{cantPlaylist}";
             nueva.Description = $"Esta es tu playlist numero {cantPlaylist}";
@@ -168,6 +173,7 @@ namespace AppMusica.PageModels
 
             var aDevolverPlaylists = await PlaylistServices.ReadAllAsync();
             ListaPlaylits = new ObservableCollection<PlaylistRead>(aDevolverPlaylists);
+            cantPlaylist = ListaCanPlaylist.Count();
         }
 
         [RelayCommand]
