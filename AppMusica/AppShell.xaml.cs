@@ -22,7 +22,7 @@ namespace AppMusica
      
             Routing.RegisterRoute("detailalbum", typeof(AlbumPage));
             Routing.RegisterRoute("detailartist", typeof(ArtistPage));
-         
+
 
         }
 

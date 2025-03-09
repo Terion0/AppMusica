@@ -152,30 +152,19 @@ namespace AppMusica.PageModels
             if (AEscucharOCambiar != null)
             {
                 int idSong = SelectedSong.Id;
-                int idPlaylist = aEscucharOCambiar.Id;
+                int idPlaylist = AEscucharOCambiar.Id;
                 await SongServices.UpdateAsync(idSong, idPlaylist);
-                var songs = await SongServices.ReadAllAsync();
-                List<SongRead> tmp = new();
-          
-                foreach (SongRead canciones in songs) {
-                    SongReadExtended songDetail = await SongServices.ReadAsync(canciones.Id);
-                    if (songDetail.Playlists == null) { songDetail.Playlists = new PlaylistRead[1];}
-                    foreach (PlaylistRead pl in songDetail.Playlists) {
-                        if (pl.Id == idPlaylist) {
-                            tmp.Add(canciones);
-                         
-                        }
-                    } 
-                }
-                ListaCanPlaylist = new ObservableCollection<SongRead>(tmp);
+                AEscucharOCambiar = await PlaylistServices.ReadAsync(AEscucharOCambiar.Id);
+                ListaCanPlaylist = new ObservableCollection<SongRead>(AEscucharOCambiar.Songs);
             }
         }
 
         [RelayCommand]
-        private async Task EliminarPlaylist() {
+        private async Task Delete() {
+
         }
         [RelayCommand]
-        private async Task UpdatearPlaylist()
+        private async Task UpdatePlaylist()
         {
         }
 
@@ -197,7 +186,7 @@ namespace AppMusica.PageModels
         }
 
         [RelayCommand]
-        private async Task ReproduceSongAsync()
+        private void ReproduceSong()
         {
             AppShell.CurrentInstance.PlaySong($"{Dudacliente.BaseAddress.ToString().TrimEnd('/')}{AReproducir.File}");
 

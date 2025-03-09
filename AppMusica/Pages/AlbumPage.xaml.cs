@@ -1,5 +1,6 @@
-using AppMusica.PageModels;
-using AppMusica.PagesModels;
+
+using AppMusica.PageModels.Detail;
+
 
 
 namespace AppMusica.Pages;

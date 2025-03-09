@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppMusica.PageModels
+namespace AppMusica.PageModels.Help
 {
     public partial class SettingsPageModel : ObservableObject
     {

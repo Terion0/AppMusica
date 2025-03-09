@@ -1,4 +1,6 @@
 ﻿using AppMusica.PageModels;
+using AppMusica.PageModels.Detail;
+using AppMusica.PageModels.Help;
 using AppMusica.Pages;
 using AppMusica.PagesModels;
 using AppMusica.Services;
@@ -51,6 +53,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AboutPage>();
         builder.Services.AddTransient<PlaylistPageModel>();
         builder.Services.AddTransient<PlaylistPage>();
+       
         builder.Services.AddTransient<SettingsPageModel>();
         builder.Services.AddTransient<SettingsPage>();
 

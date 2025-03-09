@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 
-namespace AppMusica.PageModels
+namespace AppMusica.PageModels.Detail
 {
 
     [QueryProperty(nameof(Id), "id")]

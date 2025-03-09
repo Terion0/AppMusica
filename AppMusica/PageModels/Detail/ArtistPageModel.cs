@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace AppMusica.PageModels
+namespace AppMusica.PageModels.Detail
 {
     [QueryProperty(nameof(Id), "id")]
     public partial class ArtistPageModel : ObservableObject
